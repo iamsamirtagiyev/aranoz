@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Favorites</title>
+</head>
+<body>
+    <div class="modal">
+        <div class="container">
+            <form>
+                <input type="file" id="image" accept="image/*">
+                <label for="image">
+                    <i class="bx bx-camera"></i>
+                    <img src="">
+                </label>
+                <input type="text" class="name" placeholder="Name">
+                <input type="text" class="price" placeholder="Price">
+                <textarea class="desc" placeholder="Description"></textarea>
+                <button type="submit">...</button>
+            </form>
+        </div>
+    </div>
+    <section class="products">
+        <div class="container">
+            <div class="product-wrapper">
+                <div class="title">
+                    <h1>Favorites</h1>
+                    <h2>Shop</h2>
+                </div>
+                <div class="product-list">
+                    <!-- <div class="product">
+                        <div class="image">
+                            <img src="./assets/images/product_1.png" alt="product">
+                        </div>
+                        <div class="desc">
+                            <h1>Guartz Belt Watch</h1>
+                            <span>$150.00</span>
+                            <div class="action">
+                                <span>+ Add To Cart</span>
+                                <i class="bx bx-heart"></i>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <a  class="home" href="index.html">Ana Səhifə</a>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./assets/js/favorite.js"></script>
+</body>
+</html>
