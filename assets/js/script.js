@@ -66,7 +66,41 @@ const showData = (page) => {
 showData(page)
 // ---------------------> Select <--------------------
 
-
+select.onchange = () => {
+    if (select.value == 2) {
+        fetch(data).then(response => response.json()).then(data => {
+            let newData = data.sort((a, b) => {
+                return a.name.localeCompare(b.header);
+            })
+            productList.innerHTML = ''
+            newData.forEach(item => {
+                productList.innerHTML += `
+                <div class="product">
+                    <div class="image">
+                        <img src=${item.image} alt="product">
+                        <div class="overlay">
+                            <a href="details.html?id=${item.id}">View Details</a>
+                            <button class="update" onclick="update(${item.id})">Update</button>
+                            <button class="delete" onclick="deleteItem(${item.id})">Delete</button>
+                        </div>
+                    </div>
+                    <div class="desc">
+                        <h1>${item.name}</h1>
+                        <span>${item.price}</span>
+                        <div class="action">
+                            <span>+ Add To Cart</span>
+                            <i class="bx bx-heart" onclick="addFavorite(${item.id})"></i>
+                        </div>
+                    </div>
+                </div>`
+            })
+        })
+    }
+    else{
+        productList.innerHTML = ''
+        showData(page)
+    }
+}
 
 // ---------------------> Load More <--------------------
 
