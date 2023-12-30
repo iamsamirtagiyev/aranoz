@@ -1,0 +1,33 @@
+.dropdown {
+    ul {
+        width: 160px;
+        position: absolute;
+        top: 80px;
+        left: -50px;
+        padding: 10px;
+        border-radius: 5px;
+        background: $btn-bg;
+        transform: scaleY(0);
+        transform-origin: top;
+        li{
+            padding: 5px;
+            a{
+                color: $text-white;
+            }
+        }
+    }
+    &:hover ul{
+        transform: scaleY(1);
+    }
+}
+
+.button{
+    font-size: 20px;
+    padding: 10px 20px;
+    background: $btn-gradient;
+    color: $text-white;
+    font-weight: 500;
+    &:hover{
+        background: $btn-gradient-hover;
+    }
+}

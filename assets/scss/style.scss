@@ -1,0 +1,767 @@
+@import './reset/reset';
+@import './mixins/mixin';
+@import './variables/variable';
+@import './extends/extend';
+
+.top{
+    z-index: 1;
+    position: fixed;
+    background: $primary-color;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    right: -200px;
+    bottom: 20px;
+    font-size: 17px;
+    padding: 0 9px;
+    border-radius: 50px;
+    font-weight: 500;
+    @include flex(center);
+    cursor: pointer;
+    transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+    i{
+        font-size: 25px;
+    }
+    span{
+        width: 0;
+        overflow: hidden;
+    }
+    &:hover span{
+        width: 100%;
+    }
+    &:hover{
+        width: 105px;
+    }
+}
+
+.add{
+    font-size: 25px;
+    background: $primary-color;
+    position: fixed;
+    border-radius: 999px;
+    width: 40px;
+    height: 40px;
+    @include flex(center, center);
+    right: 20px;
+    bottom: 20px;
+    cursor: pointer;
+    transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+}
+
+.modal {
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    opacity: 0;
+
+    &.active {
+        pointer-events: all;
+        opacity: 1;
+    }
+
+    .container{
+        @include flex(center, center); 
+        height: 100vh;
+        form{
+            background: #fff;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 500px;
+            @include flex(center, center);
+            flex-direction: column;
+            gap: 20px;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+            transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+            transform: scale(0);
+            input[type = "file"]{
+                display: none;
+            }
+            label{
+                position: relative;
+                width: 158px;
+                height: 158px;
+                border-radius: 999px;
+                border: solid 8px rgba(0, 0, 0, .2);
+                @include flex(center, center); 
+                img{
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 999px;
+                    object-fit: cover;
+                }
+                i{
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    font-size: 40px;
+                    color: #fff;
+                    background: rgba(0, 0, 0, .5);
+                    @include flex(center, center); 
+                    border-radius: 999px;
+                    opacity: 0;
+                }
+                &:hover i{
+                    opacity: 1;
+                }
+            }
+            input, textarea{
+                width: 100%;
+                font-size: 18px;
+                border: solid 2px rgba(0, 0, 0, .5);
+                padding: 10px 20px;
+                font-weight: 500;
+                text-transform: capitalize;
+            }
+            button{
+                width: 100%;
+                @extend .button;
+            }
+            &.active{
+                transform: scale(1);
+            }
+        }
+    }
+}
+
+nav {
+    background: $primary-color;
+
+    .nav-wrapper {
+        @include flex(center, space-between);
+
+        .bx-menu {
+            font-size: 30px;
+            display: none
+        }
+
+        .menu {
+            @include flex(center, center);
+            gap: 50px;
+
+            li {
+                position: relative;
+                padding: 30px 0;
+
+                a {
+                    color: $text-black;
+                }
+
+                &.dropdown {
+                    @extend .dropdown;
+                }
+            }
+        }
+
+        .icons {
+            position: relative;
+            @include flex(center, center);
+            gap: 5px;
+            font-size: 25px;
+
+            i {
+                cursor: pointer;
+
+                &:last-child::after {
+                    position: absolute;
+                    @include flex(center, center);
+                    top: -5px;
+                    right: -10px;
+                    content: '5';
+                    color: $text-white;
+                    padding: 3px 6px;
+                    font-size: 13px;
+                    background: red;
+                    border-radius: 999px;
+                }
+            }
+        }
+    }
+}
+
+.slider {
+    background: $primary-color;
+    width: 100%;
+    min-height: 90vh;
+
+    .container {
+        .slider-wrapper {
+            width: 100%;
+            min-height: 90vh;
+            overflow: hidden;
+
+            .slider-container {
+                min-height: 90vh;
+                @include flex(center, center);
+                transition: all 3s;
+
+                .slide {
+                    @include flex(center, center);
+                    padding: 30px;
+
+                    .text {
+                        @include flex;
+                        flex-direction: column;
+                        gap: 20px;
+
+                        h1 {
+                            font-size: 40px;
+                        }
+
+                        p {
+                            font-weight: 400;
+                        }
+
+                        button {
+                            @extend .button;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.feature {
+    padding: 50px 0;
+
+    .feature-wrapper {
+        @include flex(center, center);
+        flex-direction: column;
+        gap: 50px;
+
+        .title {
+            h1 {
+                font-size: 50px;
+            }
+        }
+
+        .card-list {
+            width: 100%;
+            @include grid(2);
+            gap: 20px;
+
+            .card {
+                position: relative;
+                background: $primary-color;
+                @include flex;
+                flex-wrap: wrap;
+                padding: 20px;
+                gap: 50px;
+
+                .image{
+                    width: 50%;
+                    height: 300px;
+                    img{
+                        width: 100%;
+                        height: 300px;
+                        object-fit: contain;
+                    }
+                }
+
+                .info {
+                    white-space: nowrap;
+                }
+
+                .explore {
+                    position: absolute;
+                    font-size: 25px;
+                    font-weight: 600;
+                    left: 20px;
+                    bottom: 50px;
+                    opacity: 0;
+                    color: $btn-bg;
+                    @include flex(center, center);
+                    gap: 5px;
+                }
+
+                &:hover .explore {
+                    opacity: 1;
+                    bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
+.products{
+    width: 100%;
+    padding: 50px 0;
+    .product-wrapper{
+        width: 100%;
+        .title{
+            @include flex(center);
+            flex-wrap: wrap;
+            gap: 50px;
+            width: 100%;
+            h1{
+                font-size: 50px;
+            }
+            h2{
+                color: gray;
+                font-size: 30px;
+            }
+        }
+        .select-box{
+            padding: 20px;
+            width: 100%;
+            text-align: right;
+            select{
+                border: solid 1px gray;
+                outline: none;
+                padding: 5px 10px;
+                font-size: 18px;
+                font-weight: 500;
+                border-radius: 5px;
+                color: #000;
+                option{
+                    background: #fff;
+                    border-radius: 5px;
+                }
+            }
+        }
+        .product-list{
+            width: 100%;
+            @include grid(4);
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            .product{
+                @include flex(center, center);
+                flex-direction: column;
+                gap: 10px;
+                padding: 20px;
+                height: 400px;
+                .image{
+                    position: relative;
+                    width: 100%;
+                    img{
+                        width: 100%;
+                        height: 200px;
+                        object-fit: cover;
+                    }
+                    .overlay{
+                        position: absolute;
+                        background: rgba(0, 0, 0, .5);
+                        @include flex(center, center);
+                        flex-direction: column;
+                        gap: 10px;
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        padding: 0 20px;
+                        opacity: 0;
+                        overflow: hidden;
+                        a, button{
+                            @extend .button;
+                            width: 100%;
+                            text-align: center;
+                            transform: translateY(100px);
+                        }
+                        a{
+                            transition: all .5s ease;
+                        }
+                        .update{
+                            transition: all .8s ease;
+                        }
+                        .delete{
+                            transition: all 1.1s ease;
+                        }
+                    }
+                    &:hover .overlay{
+                        opacity: 1;
+                    }
+                    &:hover a, &:hover button{
+                        transform: translateY(0);
+                    }
+                }
+                .desc{
+                    width: 100%;
+                    h1{
+                        font-size: 20px;
+                    }
+                    span{
+                        font-size: 20px;
+                    }
+                    .action{
+                        margin-top: 20px;
+                        @include flex(center, space-between);
+                        opacity: 0;
+                        span{
+                            color: $btn-bg;
+                            font-size: 20px;
+                        }
+                        i{
+                            font-size: 30px;
+                        }
+                    }
+                }
+                &:hover{
+                    box-shadow: 0 0 5px rgba(0, 0, 0, .5); 
+                }
+                &:hover .desc{
+                    padding: 0 20px;
+                }
+                &:hover .action{
+                    opacity: 1;
+                }
+            }
+        }
+        .load-btn{
+            margin-top: 50px;
+            width: 100%;
+            text-align: center;
+            button{
+                @extend .button;
+            }
+        }
+    }
+}
+.offer{
+    width: 100%;
+    min-height: 100vh;
+    background: $primary-color;
+    @include flex(center, center);
+    .offer-wrapper{
+        width: 100%;
+        @include flex(center, space-between);
+        gap: 50px;
+        width: 100%;
+        padding: 0 50px;
+        .image{
+            width: 100%;
+            img{
+                width: 100%;
+                height: auto;
+            }
+        }
+        .text{
+            width: 100%;
+            @include flex(center, center);
+            flex-direction: column;
+            h1{
+                font-size: 50px;
+            }
+            .watch{
+                @include flex(center, space-between);  
+                gap: 30px;
+                .div{
+                    @include flex(center, center);
+                    flex-direction: column;
+                    gap: 5px; 
+                    span{
+                        color: gray;
+                        font-size: 20px;
+                        font-weight: 600;
+                    }
+                    h2{
+                        text-align: center;
+                        font-size: 35px;
+                    }
+                }
+            }
+            .input-box{
+                width: 100%;
+                margin-top: 30px;
+                @include flex(center, center);
+                input{
+                    width: 70%;
+                    font-size: 18px;
+                    padding: 10px 20px;
+                }
+                button{
+                    @extend .button;
+                    width: 30%;
+                }
+            }
+        }
+    }
+}
+
+.subscribe{
+    background: url(../images/subscribe_area.png.webp);
+    width: 100%;
+    min-height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .subscribe-wrapper{
+        min-height: 100vh;
+        @include flex(center, center);
+        flex-direction: column;
+        gap: 30px;
+        padding: 10px;
+        span{
+            color: $btn-bg;
+        }
+        h1{
+            font-size: 50px;
+            text-align: center;
+        }
+        .input-box{
+            @include flex;
+            gap: 10px;
+            input{
+                font-size: 18px;
+                padding: 5px 10px;
+            }
+            button{
+                @extend .button;
+            }
+        }
+    }
+}
+.client{
+    width: 100%;
+    padding: 50px 0;
+    .client-wrapper{
+        @include grid(5);
+        align-items: center;
+        justify-content: center;
+        .image{
+            padding: 20px;
+            border-right: solid 1px gray;
+            @include flex(center, center);
+            &:first-child, &:nth-child(2), &:nth-child(3),&:nth-child(4), &:nth-child(5){
+                border-bottom: solid 1px gray;
+            }
+            &:nth-child(5), &:nth-child(10){
+                border-right: none;
+            }
+            &:nth-child(2), &:nth-child(9){
+               filter: saturate(0);
+            }
+            &:nth-child(2):hover, &:nth-child(9):hover{
+               filter: saturate(1);
+            }
+        }
+    }
+}
+
+footer{
+    padding: 50px 0;
+    .footer{
+        width: 100%;
+        @include flex(flex-start, space-between);
+        flex-wrap: wrap;
+        gap: 20px;
+        .box{
+            @include flex;
+            flex-direction: column;
+            gap: 10px;
+            h3{
+                margin-bottom: 10px;
+            }
+            span:hover{
+                color: $btn-bg;
+            }
+            .input-box{
+                width: 100%;
+                @include flex(center, center);
+                input{
+                    font-size: 16px;
+                }
+                button{
+                    font-size: 16px;
+                    background: $btn-bg;
+                    color: #fff;
+                    padding: 5px 10px;
+                }
+            }
+        }
+    }
+}
+
+.details{
+    width: 100%;
+    background: $primary-color;
+    .detail-wrapper{
+        width: 100%;
+        @include flex(center, center);
+        min-height: 100vh;
+        gap: 50px;
+        .image{
+            width: 40%;
+            min-height: 90vh;
+            img{
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+        }
+        .info{
+            width: 60%;
+            @include flex;
+            flex-direction: column;
+            gap: 30px;
+            h1{
+                font-size: 50px;
+            }
+            p{
+                color: gray;
+            }
+            span{
+                font-size: 25px;
+                font-weight: 500;
+            }
+            a{
+                @extend .button;
+            }
+        }
+    }
+}
+
+.home{
+    @extend .button;
+}
+
+@media(max-width: 991px) {
+    nav {
+        padding: 30px 0;
+
+        .nav-wrapper {
+            position: relative;
+
+            .bx-menu {
+                display: block;
+            }
+
+            .menu {
+                position: absolute;
+                background: #fff;
+                width: 100%;
+                top: 60px;
+                height: 0;
+                overflow: hidden;
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+                padding: 0 20px;
+
+                li {
+                    padding: 0;
+                }
+
+                &.active {
+                    height: 250px;
+                }
+            }
+        }
+    }
+
+    .slider {
+        .slider-wrapper {
+            .slider-container {
+                .slide {
+                    .image {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .feature {
+        .feature-wrapper {
+            .card-list {
+                .card {
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+    .products{
+        .product-wrapper{
+            .product-list{
+                @include grid(2)
+            }
+        }
+    }
+    .client{
+        .client-wrapper{
+            scale: .8;
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .offer{
+        width: 100%;
+        .offer-wrapper{
+            width: 100%;
+            padding: 20px;
+            flex-direction: column;
+            .text, .image{
+                width: 100%;
+            }
+        }
+    }
+
+    .client{
+        .client-wrapper{
+            @include grid(4);
+            .image:nth-child(5){
+                border-right: solid 1px gray;
+            }
+        }
+    }
+    .details{
+        .detail-wrapper{
+            flex-direction: column;
+            .image, .info{
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media(max-width: 575px) {
+    .feature {
+        .feature-wrapper {
+            .card-list {
+                @include grid(1);
+            }
+        }
+    }
+    .products{
+        .product-wrapper{
+            .product-list{
+                @include grid(1)
+            }
+        }
+    }
+    .offer{
+        .offer-wrapper{
+            .text{
+                scale: .5;
+            }
+        }
+    }
+    .subscribe{
+        .subscribe-wrapper{
+            .input-box{
+                flex-direction: column;
+            }
+        }
+    }
+    .client{
+        .client-wrapper{
+            @include grid(2);
+        }
+    }
+    footer{
+        .footer{
+            .input-box{
+                scale: .5;
+            }
+        }
+    }
+}
